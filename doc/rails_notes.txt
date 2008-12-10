@@ -1,0 +1,19 @@
+So, I was thinking that the integration of an Agency model and a Rails model:
+
+* Install agency as a gem.  It's going to have to be part of a deployment strategy, I think, because it's too complicated to just fling around like a few limp scripts anyway.
+* Create an `agent --rails .` script that will install the plugin
+* include RailsAgent
+* Allow Agent.specify with all its glory inside the model
+* Have the plugin offer some rake tasks for managing the lifecycle of the model outside of a running Rails application.  
+* Search this kind of model with MyAgentModel.find(:hash_of_state) # => returns a knowledge base entry that describes the classification, prediction, or whatever of the model.
+* Instances of this model don't really make sense to me at this time. 
+* Offer Backroundrb integration for any production-time operations that need to be done.
+* This should also work with Merb, Camping, and Sinatra.  Look into these.
+* Agency already offers Rack-compliant services, which could be integrated into the Rails app in a more interesting way.  This gives us access to both the runtime efforts of the agent as well as the knowledge base.  The direct model would be a more adaptable interface for knowledge base access than a knowledge base feed.
+* Actuators can be setup in a predominate way, if the developer wants to push knowledge instead of pull it.  In this case, the plugin never needs to be installed, and a model in the app is meaningless.  The Agency instance just needs to be aware of where the other app is and integrate with its database or services.
+
+Examples where I can test this:
+
+* Adaptive Reader, a reinforcement learning algorithm on top of a static reading list.  The goal is not to be greedy, but exclusive in its selection, kind of like a spam filter for blog articles. This also has a filter for volume control: the optimal amount of information is sought for, things are prioritized, and this is a learned level.
+* Eager Reader, another reinforcement learning algorithm, this one creating a dynamic reading list based on ratings/reads.  The expansive nature of this is balanced with a filter for volume control.
+* Community website: Some sort of social network that is not driven by the people, but the data or ideas.  Maybe this becomes the ontology for Tegu?

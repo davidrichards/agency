@@ -1,4 +1,4 @@
-module Agent #:nodoc:
+module Agency #:nodoc:
   class Element
 
     # How/when to move this to RindaRunner???
@@ -63,3 +63,5 @@ module Agent #:nodoc:
     
   end
 end
+
+Dir.glob("#{File.dirname(__FILE__)}/element/**/*.rb").each { |file| require file }

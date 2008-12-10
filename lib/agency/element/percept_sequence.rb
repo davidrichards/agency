@@ -1,4 +1,4 @@
-module Agent #:nodoc:
+module Agency #:nodoc:
   class PerceptSequence < Element
     
   end

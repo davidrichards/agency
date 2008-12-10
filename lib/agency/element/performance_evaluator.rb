@@ -1,4 +1,4 @@
-module Agent #:nodoc:
+module Agency #:nodoc:
   class PerformanceEvaluator < Element
     
   end

@@ -5,63 +5,7 @@
 # setup a place to keep commands
 # break everything out into the right files in lib
 
-# The base class for all Agency-specific errors.
-class AgencyError < StandardError; end
 
-# Setup in the context_set class in strategy patterns
-class NotImplemented < AgencyError; end
-
-# Raised to denote a condition that should never occur. If this gets
-# raised, it is the Agency's fault, not the consumer's.
-class Bug < AgencyError; end
-
-module Command
-  
-  def initialize(opts={})
-    @subcommands = opts[:subcommands] || []
-  end
-  alias :init :initialize
-  
-  def execute
-    begin
-      @subcommands.each {|command| commands.send(:execute)}
-      this_execute
-    rescue
-      force_undo
-    end
-  end
-  
-  def this_execute
-    raise NotImplemented
-  end
-  private :this_execute
-  
-  def undo
-    this_undo
-    @subcommands.reverse_each {|command| command.send(:undo)}
-  end
-  
-  # Undo as much as possible, log any errors along the way.
-  def force_undo
-    begin
-      this_undo
-    rescue Exception => e
-      Environment.instance.logger.error(e)
-    end
-    @subcommands.reverse_each do |command|
-      begin
-        command.send(:undo)
-      rescue Exception => e
-        Environment.instance.logger.error(e)
-      end
-    end
-  end
-  
-  def this_undo
-    raise NotImplemented
-  end
-  private :this_undo
-end
 
 class AddQueueCommand
 	include Command

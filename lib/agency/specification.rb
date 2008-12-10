@@ -1,72 +1,79 @@
-module Agent #:nodoc:
-
-# Do I make each element generic?  I can do that.  How do I want to initialize each one?  Because this part is handled by the runtime configuration piece: how many, up and down.  I can put it in an Element...  I need to know that I can override any part of the specification when I come back later and modify it...  
+module Agency #:nodoc:
+  
+  # There are three principal ways to get the runtime environment loaded:
+  # a specification (DSL), the configurator (default/initial setup), and
+  # the load manager (just adjusts the number of each element running).
+  # To store all this in context, there is ResourceCollection.
+  # ResourceCollection has class methods that can locate all collections
+  # grouped by class, and ResourceCollection speaks to a single class as
+  # its defined for a runtime environment. 
   class Specification
+  
+    attr_accessor :elements
+    attr_reader :name
     
-    attr_accessor :queues, :callable_methods, :interfaces, :elements
-    
+    include Enumerable
+  
     def initialize(name, &block)
       @name = name
-      @queues = @callable_methods = @interfaces = []
-      @elements = {}
+      @queues = @callable_methods = @interfaces = @elements = []
       instance_eval(&block) if block
     end
     
+    def blat(&specification)
+      instance_eval(&specification)
+    end
+    
+    # The important thing isn't having a specification class full of
+    # information, but the runtime environment aware of everything, which
+    # happens as a ResourceCollection being updated with the specification.
+    # This collection has to be a smart agent, able to fit the LoadManager's
+    # specifications by managing duplicates, etc.  Duplicate information
+    # ought to be broadcastable to the ResourceCollection regularly without
+    # messing up the balance of the runtime. 
+    def merge
+      # TODO: Send this to the runtime...
+    end
+  
     def each(&block)
       @elements.each(&block)
     end
-    
+  
     def <<(element)
-      @elements[element.name] = element
+      @elements << element
     end
-    
+  
     def [](name)
       @elements[name]
     end
-    
-    def stream(name, &block)
-      fullname = "source_" + name.to_s
-      element = Source.new(name, &block)
-      @elements[fullname] = @sources[fullname] = element
-    end
-    alias :file :stream
-    alias :repository :stream
-
+  
     def queue(name)
-      fullname = "queue_" + name.to_s
-      element = Queue.new(name, &block)
-      @elements[fullname] = @queues[fullname] = element
+      @elements << Queue.new(name, &block)
     end
 
     def sensor(name, &block)
-      fullname = "sensor_" + name.to_s
-      element = Sensor.new(name, &block)
-      @elements[fullname] = @sensors[fullname] = element
+      @elements << Sensor.new(name, &block)
     end
 
-    def data_store(name, &block)
-      fullname = "data_store_" + name.to_s
-      element = DataRepository.new(name, &block)
-      @elements[fullname] = @data_stores[fullname] = element
+    def percept_sequence(name, &block)
+      @elements << PerceptSequence.new(name, &block)
+    end
+    
+    def knowlege_base(name, &block)
+      @elements << KnowledgeBase.new(name, &block)
     end
 
     def agent_function(&block)
-      fullname = "agent_function_" + name.to_s
-      element = AgentFunction.new(name, &block)
-      @elements[fullname] = @agent_functions[fullname] = element
+      @elements << AgentFunction.new(name, &block)
     end
 
     def performance_evaluator(&block)
-      fullname = "performance_evaluator_" + name.to_s
-      element = PerformanceEvaluator.new(name, &block)
-      @elements[fullname] = @performance_evaluators[fullname] = element
+      @elements << PerformanceEvaluator.new(name, &block)
     end
 
     def actuator(name, &block)
-      fullname = "actuator_" + name.to_s
-      element = Actuator.new(name, &block)
-      @elements[fullname] = @actuators[fullname] = element
+      @elements << Actuator.new(name, &block)
     end
-        
+      
   end
 end
