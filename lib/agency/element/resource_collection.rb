@@ -1,6 +1,24 @@
+require 'ostruct'
+
 module Agency #:nodoc:
   # This is a collection of the same type (class) of resources.
   class ResourceCollection
+    
+    @@collections = []
+    module ClassMethods
+      
+      def collections
+        @@collections
+      end
+      
+      # We keep these keyed by class
+      def collections=(collection)
+        c = @@collections.find {|c| c.klass == collection.klass } || collection
+        .... not right...
+      end
+    end
+    
+    extend ClassMethods
     include Enumerable
 
     def initialize(*items)
