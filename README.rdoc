@@ -4,16 +4,11 @@
 
 == DESCRIPTION:
 
-When the great minds at Stanford and MIT share their ideas with lesser folk like myself in their open source courseware, they teach me about ideas in machine learning.  These are, as far as I know, theoretically sound and even axiomatic in many cases.  They teach us how a single process can work.  
-
-But I've had more ambitious ideas.  I wanted a framework where I could really get into a problem and work on it in a way that makes sense to me.  One approach to this could be to get a license of MatLab or Octave, they do a good job.  But since I can bring that work here, I still wanted to see what I could write.  After a lot of false starts, I think I may have something.  And, it has the added benefit of having a theme: dependable, understandable, and flexible.  
-
-
 Agency is a decoupled framework for running machine learning agents.  Basically, start with this framework, define your learning function, and define a specification that ties your function to your environment.  The synopsis below has some running examples.  blog.teguhub.com is the place for full-fledged tutorials on the subject.  Tegu is the project Agency was taken out of, it was the old WorkloadManager for Tegu.
 
 == FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+* This is still alpha software.  I will be working out some of the kinks in this system and then releasing a notice at blog.teguhub.com.  Stay tuned.
 
 == SYNOPSIS:
 
