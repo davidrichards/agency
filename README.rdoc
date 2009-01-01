@@ -6,6 +6,8 @@
 
 Agency is a decoupled framework for running machine learning agents.  Basically, start with this framework, define your learning function, and define a specification that ties your function to your environment.  The synopsis below has some running examples.  blog.teguhub.com is the place for full-fledged tutorials on the subject.  Tegu is the project Agency was taken out of, it was the old WorkloadManager for Tegu.
 
+Since I consider myself still pre-alpha, look to TODO.txt to know where I'm at.  
+
 == FEATURES/PROBLEMS:
 
 * This is still alpha software.  I will be working out some of the kinks in this system and then releasing a notice at blog.teguhub.com.  Stay tuned.

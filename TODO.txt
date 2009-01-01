@@ -1,0 +1,38 @@
+>>> PRE-ALPHA <<<
+
+* Merge in the initialization/runner code
+* Finish the bounded queues
+* Test, test, test
+
+>>> ALPHA <<<
+
+* Work on some more data conversion utilities
+* Write some good generic actuator and sensor classes
+** AtomPub
+** RDF
+** JSON
+** XML
+** CVS
+** Named Pipes
+* Bring in RosettaQueue for an alternative message broker
+* Work in the AWS tools
+* Publish an AMI with canonical libraries (AWS and it's local equivelent (name???))
+** Atlas (BLAS and LAPACK)
+** GNU Scientific Library
+** R
+** Various gems
+*** RNum
+*** rb++
+*** appropriate gems that I'm writing
+
+>>> BETA <<<
+
+* Bring a MapReduce implementation (Radoop?  Hadoop?) into the project
+* Build up a cadre of examples of different generic classes of machine learning
+** Dynamic Systems (graph algebra)
+** Support Vector Machines
+** Neural Networks
+** Reinforcement Learning
+** Various clustering tools (k-means)
+** Genetic Algorithms
+** Various feature management tools (RA, PCA, ICA, etc.)
