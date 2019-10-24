@@ -1,9 +1,9 @@
 # TODO:
-# move Rinda stuff into a command, make default
-# add a config file and use that to override anything I'm working on
-# finish the ideas on the queues
-# setup a place to keep commands
-# break everything out into the right files in lib
+# move Rinda stuff into a command, make default.
+# add a config file and use that to override anything I'm working on.
+# finish the ideas on the queues.
+# setup a place to keep commands.
+# break everything out into the right files in lib.
 
 
 
